@@ -5,6 +5,5 @@ https://arxiv.org/abs/2001.03751).
 <br />
 <br />
 <br />
-<br />
 ![example1](figs/Multi_area_LatexFont2.jpg)
   
