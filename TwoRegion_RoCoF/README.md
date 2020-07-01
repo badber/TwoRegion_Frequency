@@ -5,7 +5,6 @@ https://arxiv.org/abs/2001.03751).
 Steps:
  - Run "Frequency_oscillation_analysis.m"
  - Then "Rocof_regression.m"
- - Finally, just to check, run "Rocof_check_regression.m"
   
 This code has been tested with MATLAB version 2017b.
   
