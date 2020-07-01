@@ -46,7 +46,7 @@ opts = optimset('Display','off'); % Turn off the output message of "lsqlin"
 
 % CONSTRAINED FIT (BELOW all data points, so that the energy "injected" 
 % from the integral is underestimated)
-% Set that the regression must be above all data points: 
+% Set that the regression must be below all data points: 
 A = X_data;
 b = y1;
 % No equality constraints:
@@ -60,7 +60,7 @@ integral1_regression_CONSERVATIVE = X_data*theta_conservative_integral1;
 
 
 % CONSTRAINED FIT (BELOW all data points):
-% Set that the regression must be above all data points: 
+% Set that the regression must be below all data points: 
 A = X_data;
 b = y2;
 % No equality constraints:
