@@ -15,7 +15,7 @@ clc
 % saved variables from Simulink are "Delta_f1" and "Delta_f2"
 
 %% System condition and parameters
-D = [1e-2 1e-2]; % Units 1/Hz
+D = [0.5e-2 0.5e-2]; % Units 1/Hz
 Demand = 25e3; % Units: MW
 Td = 10; % Units: s. Delivery time of PFR.
 
@@ -26,7 +26,7 @@ Line_term = 2*pi*V^2/X;
 %%
 % Some other system parameters, if you change these you will have to change
 % the loops later in the code.
-RoCoF_max = 1; % Relaxed RoCoF
+RoCoF_max = 0.5; % Relaxed RoCoF
 Delta_fmax = 0.8;
 Delta_fDB = 0;
 
@@ -47,6 +47,7 @@ X_data =[]; % For storing the features (the system conditions) for the regressio
 
 iterations=1;
 for P_loss=1.2e3:300:1.8e3 % Units: MW. NOTE: the model considers the power outage in area 1, see the Simulink model
+    for Demand = 20e3:25e3:45e3
     for fraction_D=0.25:0.25:0.75
         P_D = Demand*[fraction_D (1-fraction_D)]; 
         D_prime = D*P_D';
@@ -264,6 +265,7 @@ for P_loss=1.2e3:300:1.8e3 % Units: MW. NOTE: the model considers the power outa
 
             end
         end
+    end
     end
 end
 
