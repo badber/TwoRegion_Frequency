@@ -2,6 +2,8 @@ function [C_COIapprox,Constant_ofExponential_single_area,...
     exponent_single_area,C_oscillations,single_area_samples] =...
     COIapprox_terms_fromLaplace_f1(H,D,P_D,R,Td,P_loss,VV_times2pi_overXline,Delta_f1)
 
+% Author: Luis Badesa
+
     warning off
     
     % First solve the 2-area system using the symbolic toolbox and the

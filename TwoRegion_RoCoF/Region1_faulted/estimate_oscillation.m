@@ -82,11 +82,7 @@ function [a,A,T,phi] = estimate_oscillation(Oscillation,C,iterations)
     phi_estimates = wrapTo2Pi(phi_estimates);
     phi_estimates = phi_estimates(phi_estimates>1e-3);
     phi = mean(phi_estimates);
-    
-%     if abs((max(phi_estimates)-min(phi_estimates))/phi) > 0.15 % If the range of estimates is bigger than, say 0.15rad (roughly 8.5deg), then the estimation has not been accurate
-%         warning('Note that the estimation of "phi" does not seem to be very accurate')
-%     end
-    
+       
     % NOTE THAT THIS ESTIMATION OF "PHI" considers a positive sin function.
     % For the area where the outage happens, the sin is actually negative,
     % so this estimated "phi" will be close to 2*pi
@@ -104,7 +100,7 @@ function [a,A,T,phi] = estimate_oscillation(Oscillation,C,iterations)
     % The method uses a logarithmic transformation of the oscillation
     % samples so that the exponential term "a" and the log of the amplitude
     % term follow a linear relationship, which can then be estimated using
-    % a linear regression. For more info see file "estimation of a and A.jpg"
+    % a linear regression. 
     
     % Remove the samples where the sin(omega*t) is almost zero (at least 
     % below the user-defined "threshold" below), because dividing by small 
@@ -113,15 +109,6 @@ function [a,A,T,phi] = estimate_oscillation(Oscillation,C,iterations)
     Osc_shifted_aboveThreshold = Osc_shifted(abs(sin(2*pi/T*Osc_shifted_time))>threshold);
     Osc_shifted_aboveThreshold_time = Osc_shifted_time(abs(sin(2*pi/T*Osc_shifted_time))>threshold);
     
-%     % Just a visual sense-check to make sure that samples far from the zero crossings have been chosen:    
-%     plot(Osc_shifted_aboveThreshold_time,Osc_shifted_aboveThreshold,'x')
-%     hold on
-%     plot(Osc_shifted_aboveThreshold_time,sin(2*pi/T*Osc_shifted_aboveThreshold_time),'x')
-
-%     % Just another sense-check, this should look roughly like an exponential:
-%     samples_for_a = Osc_shifted_aboveThreshold./sin(2*pi/T*Osc_shifted_aboveThreshold_time);
-%     plot(Osc_shifted_aboveThreshold_time,samples_for_a,'x')
-
     % Define the features matrix for the linear regression:
     X=[Osc_shifted_aboveThreshold_time ones(length(Osc_shifted_aboveThreshold_time),1)];
     
@@ -131,15 +118,7 @@ function [a,A,T,phi] = estimate_oscillation(Oscillation,C,iterations)
 
     a = theta(1); % Estimate for "a" 
     A = exp(theta(2)); % Estimate for "A" but shifted, this estimate is corrected below
-                       % To understand why "A" is divided by the time-shift
-                       % in the code below, see file "estimation of a and A.jpg"
-
-%     % Check how accurate the regression looks:
-%     plot(Osc_shifted_aboveThreshold_time,log_forReg,'x')
-%     hold on
-%     plot(Osc_shifted_aboveThreshold_time,log(A)+a*Osc_shifted_aboveThreshold_time)
-
-
+                       
     time_shift = Oscillation.Time(index_zero_crossings(1));
     A = A/exp(a*time_shift);
     
@@ -158,10 +137,6 @@ function [a,A,T,phi] = estimate_oscillation(Oscillation,C,iterations)
     print(['Fig' num2str(iterations) 'oscillations'],'-dpng')
     cd('..\')
     close all
-    
-    % If there is some mismatch between the original oscillation and the
-    % estimated oscillation, the error is likely to be in the estimation of
-    % "phi"
     
     
 end
