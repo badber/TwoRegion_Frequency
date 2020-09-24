@@ -1,3 +1,6 @@
+% Author: Luis Badesa
+
+%%
 clearvars
 close all
 clc
