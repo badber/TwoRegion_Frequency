@@ -1,8 +1,5 @@
-clearvars
-close all
-clc
-
-%%
+% Author: Luis Badesa
+%
 % Comments:
 %
 % The name of the parameters in the Simulink model has to be the same as 
@@ -13,6 +10,11 @@ clc
 % signal. The value will be saved in a variable with the same name as the
 % one given to block "To workspace". For example, in this case some of the 
 % saved variables from Simulink are "Delta_f1" and "Delta_f2"
+
+%%
+clearvars
+close all
+clc
 
 %% System condition and parameters
 D = [0.5e-2 0.5e-2]; % Units 1/Hz
