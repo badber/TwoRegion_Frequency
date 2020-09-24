@@ -1,3 +1,6 @@
+% Author: Luis Badesa
+
+%%
 clearvars
 close all
 clc
@@ -27,8 +30,6 @@ theta2 = regress(y2,X_over_Htotal)
 % actual RoCoF for that system condition).
 %
 % Some info here: https://uk.mathworks.com/matlabcentral/answers/94272-how-do-i-constrain-a-fitted-curve-through-specific-points-like-the-origin-in-matlab
-%
-% See also the picture explanation_conservative_regression.jpg
 
 % Set that the regression must be above all data points: 
 A = -X_over_Htotal;
@@ -40,9 +41,6 @@ beq = [];
 
 % theta1 = lsqlin(X_over_Htotal,y1,A,b,Aeq,beq,[],[],[],opts)
 
-% % Check that the 2 extreme points are positive
-% max(X_over_Htotal)*theta1-min(y2)
-% min(X_over_Htotal)*theta1-min(y1)
 
 %% Do it for area 2 now
 % 
@@ -51,12 +49,12 @@ beq = [];
 % 
 % theta2 = lsqlin(X_over_Htotal,y2,A,b,Aeq,beq,[],[],[],opts)
 
-% NOTE: for area 2 (the non-faulted area) it's not necessary to use the
-% conservative regression, since the
+% NOTE: for area 2 (the non-faulted area) it might not be necessary to use 
+% the conservative regression, since the attenuation of the oscillations
+% has already been neglected (which is already a conservative assumption).
 
 
 %%
-%save('Rocof_reg_output.mat','X_over_Htotal','y1','y2','theta1','theta2')
 %save('Rocof_reg_output.mat','X_over_Htotal','y1','theta1')
 save('Rocof_reg_output.mat','X_over_Htotal','y2','theta2')
 
