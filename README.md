@@ -12,9 +12,5 @@ https://arxiv.org/abs/2001.03751), 2020.
 </ol> 
 
 
-<br />
-<br />
-<br />
-<br />
 ![example1](figs/Multi_area_LatexFont2.jpg)
   
