@@ -13,6 +13,6 @@ If you use this code for your own work, please cite these papers:
    <br />
 </ol> 
 
-
+[arXiv preprint](https://arxiv.org/abs/2001.03751)
 ![example1](figs/Multi_area_LatexFont2.jpg)
   
